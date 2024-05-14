@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 import json
-
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -42,6 +42,7 @@ def is_within_time_range(log_timestamp, start_time, end_time):
     except ValueError:
         return False
 
+
 def parse_log_file(log_file):
     logs = []
     with open(log_file, 'r') as file:
@@ -56,7 +57,6 @@ def parse_log_file(log_file):
     return logs
 
 
-
 def write_log_entry(log_file, log_data):
     if os.path.exists(log_file):
         raise FileExistsError(f"Error: Log file '{log_file}' already exists.")
@@ -64,14 +64,10 @@ def write_log_entry(log_file, log_data):
     with open(log_file, 'w') as file:
         file.write(json.dumps(log_data) + '\n')
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-from datetime import datetime
-
-from datetime import datetime
 
 
 @app.route('/search', methods=['GET'])
