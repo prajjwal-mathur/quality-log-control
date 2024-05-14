@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quality Log Control</title>
+    <style>
+        .flash-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .success-message {
+            color: green;
+            background-color: lightgreen;
+        }
+        .error-message {
+            color: red;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log Creation</h1>
+
+    {% if success_message %}
+        <div class="flash-message success-message">
+            {{ success_message }}
+        </div>
+    {% endif %}
+
+    {% if error_message %}
+        <div class="flash-message error-message">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <form action="/create_log" method="post">
+        <label for="level">Level:</label>
+            <select name="level" id="level">
+                <option value="">Select Level</option>
+                <option value="info">Info</option>
+                <option value="error">Error</option>
+                <option value="success">Success</option>
+            </select>
+        <br>
+        <label for="log_message">Log Message:</label>
+        <input type="text" name="log_message" placeholder="Log message" id="log_message">
+        <br>
+        <label for="source">Source:</label>
+        <input type="text" name="source" id="source" placeholder="Source file">
+        <br>
+        <input type="submit" value="Create Log">
+    </form>
+
+<script>
+        setTimeout(function() {
+            var messages = document.querySelectorAll('.flash-message');
+            messages.forEach(function(message) {
+                message.style.display = 'none';
+            });
+        }, 5000);
+    </script>
+</body>
+</html>
