@@ -1,4 +1,4 @@
-# Chat360 Assignment: Quality Log Control
+# Quality Log Control
 - This app works as a query app that has filters for each of the values `level log_string timestamp metadata.source`
 - Contains self-explanatory code that has 4-5 APIs that work on REST principle
 - Stack used: 
